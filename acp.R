@@ -6,7 +6,7 @@ library(ggdendro)
 library(cluster)
 runApp(App)
 data<-read_excel("ACP.xlsx",sheet = "Taller",na = "")
-d<-data[,2:5]
+d<-dd[,2:5]
 covarianza<-cov(d)
 correlaciones<-cor(d)
 #componentes principales
@@ -18,9 +18,9 @@ summary(pca)
 plot(pca)
 pca2<-pca$x[,1]
 str(pca2)
-names(data)
+names(dd)
 #Se ajusta un GLM
-glm1<- glm(data[,5]~data[,3] + pca2, family=gaussian)
+glm1<- glm(dd[,5]~dd[,3] + pca2, family=gaussian)
 summary(glm1)
 anova(glm1)
 par(mfcol=c(2,2))
