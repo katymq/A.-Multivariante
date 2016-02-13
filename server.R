@@ -1,5 +1,9 @@
 library(shiny)
 library(readxl)
+<<<<<<< HEAD
+=======
+library(qcr)
+>>>>>>> 1e1343764de9115967887182b2834a5ac75b62cc
 library(ggplot2)
 library(ggdendro)
 library(cluster)
@@ -31,7 +35,14 @@ shinyServer(function(input,output){
     data()
   })
   output$suma <- renderPrint({
+<<<<<<< HEAD
 
+=======
+    if(is.null(data())){return ()}
+    summary(data())
+    class(data())
+    names(data())
+>>>>>>> 1e1343764de9115967887182b2834a5ac75b62cc
     dd <- data.frame(data())
     ddd<-dd[,2:5]
     d<-matrix(0,nrow(ddd),ncol(ddd))
@@ -42,6 +53,7 @@ shinyServer(function(input,output){
       }
     }
     covarianza<-cov(d)
+<<<<<<< HEAD
      print(class(covarianza))
     print(max(covarianza))
     covarianza
@@ -62,9 +74,25 @@ shinyServer(function(input,output){
     
   })
   
+=======
+    correlaciones<-cor(d)
+    #componentes principales
+    pca<- prcomp(d)
+    
+    
+  })
+  output$Analisis <- renderPlot({
+    p<-plot(pca)   
+    print(p)
+    
+  })
+  
+  
+>>>>>>> 1e1343764de9115967887182b2834a5ac75b62cc
   
   
   output$tb <- renderUI({
+<<<<<<< HEAD
     if(is.null(data())){
       fixedRow(
         HTML("<hr color=SteelBlue noshade=noshade />"),
@@ -152,5 +180,27 @@ shinyServer(function(input,output){
         tabPanel("ANÁLISIS DE COMPONENTES PRINCIPALES", 
                  #Crear una función
                  tableOutput("#CREAR FUNCION")) )
+=======
+    if(is.null(data()))
+      h5(p(align='center',"INICIO"),br(), p(align='justify',"INTRODUCCIÓN. La aplicación a presentar, nos
+                                            ayudará a poder realizar informes estadísticos de los talleres de
+                                            BemerCar. Lo que facilitará el estudio y elanálisis de la entidad
+                                            estudiada.
+                                            Además presentará varios análisis multivariantes, que  estará enfocado
+                                            atratar de pronosticar el número de automoviles que
+                                            realizanmantenimiento, después de cierto kilometraje. Para realizar
+                                            una campaña marketing sobre los grupos óptimos.
+                                            OBJETIVOS
+                                            Identificar las familias que presentan mayor frecuencia en retornar a
+                                            los talleres.
+                                            Analizar las variables y presentar un análisis descriptivo general de BemerCar.
+                                            Reducir la dimensión del número de  variables, las cuales explican de
+                                            mejor manera el modelo. Aplicando el método de componentes
+                                            principales.
+                                            "))
+    else
+      tabsetPanel(tabPanel("Antecedentes", tableOutput("filedf")),tabPanel("Data", tableOutput("table")),tabPanel("Summary", tableOutput("suma")),
+                  tabPanel("Análisis de componentes principales", tableOutput("filedf")), tabPanel("Graf", tableOutput("analisis")))
+>>>>>>> 1e1343764de9115967887182b2834a5ac75b62cc
   })
 })

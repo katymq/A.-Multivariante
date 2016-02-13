@@ -1,5 +1,6 @@
 library(shiny)
 library(readxl)
+<<<<<<< HEAD
 library(data.table)
 library(bit)
 library(bit64)
@@ -7,6 +8,13 @@ library(ggplot2)
 library(ggdendro)
 library(cluster)
 dir()
+=======
+library(qcr)
+library(ggplot2)
+library(ggdendro)
+library(cluster)
+
+>>>>>>> 1e1343764de9115967887182b2834a5ac75b62cc
 shinyUI(fixedPage( 
   HTML("<body style=background:##FAFAFA> </body>"),
   fixedRow(
@@ -25,9 +33,14 @@ shinyUI(fixedPage(
     column(width=3,offset = 0,
            tags$img(src = "logo12.jpg", width = "300px", height = "100px",border="2")
     ),
+<<<<<<< HEAD
     column(width=6,offset = 0,
            HTML("<div align=center> <b> <font color=SkyBlue face=Cambria size=5>
      CONSULTORA ESTADÍSTICA </font> </b> </div>")
+=======
+    column(width=4,offset = 0,
+           HTML("<div align=left> <font color=SteelBlue face=Arial size=6> Informes BemerCar </font> </div>")
+>>>>>>> 1e1343764de9115967887182b2834a5ac75b62cc
     ),
     
     column(width=3,offset = 0,
@@ -35,6 +48,7 @@ shinyUI(fixedPage(
     )
   ),    
   HTML("<hr color=SteelBlue noshade=noshade />"),
+<<<<<<< HEAD
   
 
     fixedRow(
@@ -75,6 +89,17 @@ shinyUI(fixedPage(
                          accept = c(".xls",".xlsx", ".csv")),
                helpText(HTML("<font color=SteelBlue face=Verdana size=2> Max 5MG </font> </div>"))
              )
+=======
+  sidebarLayout(
+    sidebarPanel(
+      fileInput(inputId="data", label="Cargar Archivo", multiple = FALSE, 
+                accept = c(".xls",".xlsx", ".csv")),
+      helpText("Tamaño máximo del archivo 5MB"),
+      tags$hr(),
+      sliderInput("slide", 
+                  label = "Número de Variables:",
+                  min = 3, max = 7, value = 3)
+>>>>>>> 1e1343764de9115967887182b2834a5ac75b62cc
     ),
     
     
@@ -98,3 +123,7 @@ shinyUI(fixedPage(
     
   )
 )
+<<<<<<< HEAD
+=======
+)
+>>>>>>> 1e1343764de9115967887182b2834a5ac75b62cc
